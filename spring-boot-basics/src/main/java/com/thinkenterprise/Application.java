@@ -1,4 +1,4 @@
-package de.msg.xt;
+package com.thinkenterprise;
 
 
 import org.springframework.boot.SpringApplication;
