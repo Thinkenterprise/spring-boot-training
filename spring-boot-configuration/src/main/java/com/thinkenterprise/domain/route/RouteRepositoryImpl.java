@@ -19,4 +19,9 @@ public class RouteRepositoryImpl implements RouteRepository {
         return routeList.stream().filter(
                 route -> route.getDeparture().equals(departure)).collect(Collectors.toList());
     }
+
+    @Override
+    public Iterable<Route> findAll() {
+        return routeList.subList(0, routeList.size());
+    }
 }
