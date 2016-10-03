@@ -18,9 +18,6 @@ public class Flight extends AbstractEntity {
 
     private LocalDate date;
 
-    @ManyToOne
-    private Route route;
-
     @OneToMany
     private Set<Employee> employees = new HashSet<>();
 
@@ -62,11 +59,4 @@ public class Flight extends AbstractEntity {
         this.employees.add(e);
     }
 
-    public Route getRoute() {
-        return route;
-    }
-
-    public void setRoute(Route route) {
-        this.route = route;
-    }
 }
