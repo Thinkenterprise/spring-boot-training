@@ -1,7 +1,7 @@
 package com.thinkenterprise.service;
 
 import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.domain.route.RouteRepository;
+import com.thinkenterprise.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

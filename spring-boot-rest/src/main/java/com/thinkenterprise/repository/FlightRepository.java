@@ -1,5 +1,6 @@
-package com.thinkenterprise.domain.route;
+package com.thinkenterprise.repository;
 
+import com.thinkenterprise.domain.route.Flight;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
