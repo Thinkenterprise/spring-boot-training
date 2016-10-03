@@ -81,14 +81,12 @@ public class BoundedContextInitializer {
             flight.addEmployee(pilot);
             Employee purser = this.employeeRepository.findByStaffNumber("P234234");
             flight.addEmployee(purser);
-            flight.setRoute(route);
             route.addFlight(flight);
 
             // Flug am 24.09.2015
             flight = new Flight(111.45, LocalDate.of(2015, 9, 24));
             aircraft = this.aircraftRepository.findByRegistration("D-BILA");
             route.setAircraft(aircraft);
-            flight.setRoute(route);
             route.addFlight(flight);
 
             result.add(route);
