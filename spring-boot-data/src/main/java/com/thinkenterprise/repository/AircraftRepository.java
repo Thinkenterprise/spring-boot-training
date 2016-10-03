@@ -1,5 +1,6 @@
-package com.thinkenterprise.domain.aircraft;
+package com.thinkenterprise.repository;
 
+import com.thinkenterprise.domain.aircraft.Aircraft;
 import org.springframework.data.repository.CrudRepository;
 
 

@@ -1,14 +1,14 @@
 package com.thinkenterprise.domain;
 
 import com.thinkenterprise.domain.aircraft.Aircraft;
-import com.thinkenterprise.domain.aircraft.AircraftRepository;
+import com.thinkenterprise.repository.AircraftRepository;
 import com.thinkenterprise.domain.employee.CabinAttendant;
 import com.thinkenterprise.domain.employee.Employee;
-import com.thinkenterprise.domain.employee.EmployeeRepository;
+import com.thinkenterprise.repository.EmployeeRepository;
 import com.thinkenterprise.domain.employee.Pilot;
 import com.thinkenterprise.domain.route.Flight;
 import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.domain.route.RouteRepository;
+import com.thinkenterprise.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
