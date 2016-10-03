@@ -24,4 +24,24 @@ public class RouteService {
     public Iterable<Route> findAll() {
         return routeRepository.findAll();
     }
+
+    public Iterable<Route> findByDeparture(String departure) {
+        return routeRepository.findByDeparture(departure);
+    }
+
+    public long count() {
+        return routeRepository.count();
+    }
+
+    public void delete(long id) {
+        routeRepository.delete(id);
+    }
+
+    public Route save(Route entity) {
+        return routeRepository.save(entity);
+    }
+
+    public Route findById(long id) {
+        return routeRepository.findOne(id);
+    }
 }
