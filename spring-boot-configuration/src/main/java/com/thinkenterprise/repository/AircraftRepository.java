@@ -1,4 +1,6 @@
-package com.thinkenterprise.domain.aircraft;
+package com.thinkenterprise.repository;
+
+import com.thinkenterprise.domain.aircraft.Aircraft;
 
 public interface AircraftRepository {
 

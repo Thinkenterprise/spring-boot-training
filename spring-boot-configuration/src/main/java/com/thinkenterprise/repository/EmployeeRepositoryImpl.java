@@ -1,5 +1,6 @@
-package com.thinkenterprise.domain.employee;
+package com.thinkenterprise.repository;
 
+import com.thinkenterprise.domain.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;

@@ -1,5 +1,6 @@
-package com.thinkenterprise.domain.route;
+package com.thinkenterprise.repository;
 
+import com.thinkenterprise.domain.route.Flight;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 

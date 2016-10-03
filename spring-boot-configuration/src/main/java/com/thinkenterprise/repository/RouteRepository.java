@@ -1,4 +1,6 @@
-package com.thinkenterprise.domain.route;
+package com.thinkenterprise.repository;
+
+import com.thinkenterprise.domain.route.Route;
 
 public interface RouteRepository {
 

@@ -1,4 +1,6 @@
-package com.thinkenterprise.domain.employee;
+package com.thinkenterprise.repository;
+
+import com.thinkenterprise.domain.employee.Employee;
 
 public interface EmployeeRepository {
 

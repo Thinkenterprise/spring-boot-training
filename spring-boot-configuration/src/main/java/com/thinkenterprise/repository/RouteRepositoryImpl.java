@@ -1,5 +1,6 @@
-package com.thinkenterprise.domain.route;
+package com.thinkenterprise.repository;
 
+import com.thinkenterprise.domain.route.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
