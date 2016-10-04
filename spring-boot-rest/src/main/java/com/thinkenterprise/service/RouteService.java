@@ -1,5 +1,6 @@
 package com.thinkenterprise.service;
 
+import com.thinkenterprise.controller.RouteNotFoundException;
 import com.thinkenterprise.domain.route.Route;
 import com.thinkenterprise.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,15 @@ public class RouteService {
 
     public Iterable<Route> findByDeparture(String departure) {
         return routeRepository.findByDeparture(departure);
+    }
+
+    public boolean exists(long id) {
+        boolean result = routeRepository.exists(id);
+        if(!result) {
+            throw new RouteNotFoundException("Route not found: " + id);
+        } else {
+            return result;
+        }
     }
 
     public long count() {

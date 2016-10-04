@@ -22,12 +22,22 @@ public class RouteController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable(value = "id") Long id) {
-        service.delete(id);
+        try {
+            service.exists(id);
+            service.delete(id);
+        } catch (RouteNotFoundException e) {
+            throw e;
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Route get(@PathVariable(value = "id") Long id) {
-        return service.findById(id);
+        try {
+            service.exists(id);
+            return service.findById(id);
+        } catch (RouteNotFoundException e) {
+            throw e;
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
