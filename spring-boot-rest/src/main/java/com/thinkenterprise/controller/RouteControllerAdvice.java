@@ -11,7 +11,9 @@ public class RouteControllerAdvice {
     @ExceptionHandler(value = RouteNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public String exception(RouteNotFoundException exception) {
-        return exception.getMessage();
+    // Fehlerklasse mit Status unsMessage
+    public RouteErrorStatus exception(RouteNotFoundException exception) {
+        return new RouteErrorStatus(6573L, "RouteNotFound: " + exception.getMessage());
+
     }
 }
