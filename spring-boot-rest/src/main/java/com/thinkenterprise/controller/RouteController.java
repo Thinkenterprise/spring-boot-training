@@ -21,7 +21,7 @@ public class RouteController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable(value = "id") Long id) {
+    public void delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
         try {
             service.exists(id);
             service.delete(id);
@@ -31,7 +31,7 @@ public class RouteController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Route get(@PathVariable(value = "id") Long id) {
+    public Route get(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
         try {
             service.exists(id);
             return service.findById(id);

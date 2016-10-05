@@ -30,9 +30,9 @@ public class RouteService {
         return routeRepository.findByDeparture(departure);
     }
 
-    public boolean exists(long id) {
+    public boolean exists(long id) throws RouteNotFoundException {
         boolean result = routeRepository.exists(id);
-        if(!result) {
+        if (!result) {
             throw new RouteNotFoundException("Route not found: " + id);
         } else {
             return result;
