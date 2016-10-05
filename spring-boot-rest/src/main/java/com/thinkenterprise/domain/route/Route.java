@@ -1,7 +1,6 @@
 package com.thinkenterprise.domain.route;
 
 
-import com.thinkenterprise.domain.aircraft.Aircraft;
 import com.thinkenterprise.domain.core.AbstractEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,7 +16,7 @@ import java.util.Set;
 @Entity
 @NamedEntityGraphs({
         @NamedEntityGraph(name = "routeFlight", attributeNodes = {@NamedAttributeNode("flights")}),
-        @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights", subgraph = "aircraft")})
+        @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights")})
 })
 public class Route extends AbstractEntity {
     @NotEmpty
@@ -34,9 +33,7 @@ public class Route extends AbstractEntity {
     @ElementCollection(targetClass = DayOfWeek.class)
     private Set<DayOfWeek> scheduledWeekdays = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "aircraft")
-    private Aircraft aircraft;
+    private String aircraft;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OrderColumn(name = "date")
@@ -143,11 +140,11 @@ public class Route extends AbstractEntity {
         this.scheduledWeekdays.add(DayOfWeek.SUNDAY);
     }
 
-    public Aircraft getAircraft() {
+    public String getAircraft() {
         return aircraft;
     }
 
-    public void setAircraft(Aircraft aircraft) {
+    public void setAircraft(String aircraft) {
         this.aircraft = aircraft;
     }
 }
