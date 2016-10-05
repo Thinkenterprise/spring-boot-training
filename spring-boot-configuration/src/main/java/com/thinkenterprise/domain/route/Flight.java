@@ -1,7 +1,6 @@
 package com.thinkenterprise.domain.route;
 
 import com.thinkenterprise.domain.core.AbstractEntity;
-import com.thinkenterprise.domain.employee.Employee;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -14,7 +13,7 @@ public class Flight extends AbstractEntity {
 
     private LocalDate date;
 
-    private Set<Employee> employees = new HashSet<>();
+    private Set<String> employees = new HashSet<>();
 
     public Flight() {
         super();
@@ -42,15 +41,15 @@ public class Flight extends AbstractEntity {
         this.date = date;
     }
 
-    public Set<Employee> getEmployees() {
+    public Set<String> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(Set<Employee> employees) {
+    public void setEmployees(Set<String> employees) {
         this.employees = employees;
     }
 
-    public void addEmployee(Employee e) {
+    public void addEmployee(String e) {
         this.employees.add(e);
     }
 

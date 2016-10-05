@@ -1,7 +1,6 @@
 package com.thinkenterprise.domain.route;
 
 
-import com.thinkenterprise.domain.aircraft.Aircraft;
 import com.thinkenterprise.domain.core.AbstractEntity;
 
 import java.time.DayOfWeek;
@@ -22,8 +21,6 @@ public class Route extends AbstractEntity {
     private LocalTime arrivalTime;
 
     private Set<DayOfWeek> scheduledWeekdays = new HashSet<>();
-
-    private Aircraft aircraft;
 
     private List<Flight> flights = new ArrayList<>();
 
@@ -127,11 +124,4 @@ public class Route extends AbstractEntity {
         this.scheduledWeekdays.add(DayOfWeek.SUNDAY);
     }
 
-    public Aircraft getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(Aircraft aircraft) {
-        this.aircraft = aircraft;
-    }
 }
