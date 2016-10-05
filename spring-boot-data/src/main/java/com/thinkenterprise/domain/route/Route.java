@@ -1,7 +1,6 @@
 package com.thinkenterprise.domain.route;
 
 
-import com.thinkenterprise.domain.aircraft.Aircraft;
 import com.thinkenterprise.domain.core.AbstractEntity;
 
 import javax.persistence.*;
@@ -16,7 +15,7 @@ import java.util.Set;
 @Entity
 @NamedEntityGraphs({
         @NamedEntityGraph(name = "routeFlight", attributeNodes = {@NamedAttributeNode("flights")}),
-        @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights", subgraph = "aircraft")})
+        @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights")})
 })
 public class Route extends AbstractEntity {
 
@@ -30,10 +29,6 @@ public class Route extends AbstractEntity {
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = DayOfWeek.class)
     private Set<DayOfWeek> scheduledWeekdays = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "aircraft")
-    private Aircraft aircraft;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OrderColumn(name = "date")
@@ -140,11 +135,4 @@ public class Route extends AbstractEntity {
         this.scheduledWeekdays.add(DayOfWeek.SUNDAY);
     }
 
-    public Aircraft getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(Aircraft aircraft) {
-        this.aircraft = aircraft;
-    }
 }
