@@ -13,17 +13,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RouteRepositoryImplTest {
 
     @Autowired
-    private RouteRepository sut;
+    private RouteRepository repository;
 
     @Test
     public void findByDeparture() throws Exception {
-        Iterable<Route> actual = sut.findByDeparture("FRA");
+        Iterable<Route> actual = repository.findByDeparture("FRA");
         Assert.assertEquals("FRA", actual.iterator().next().getDeparture());
     }
 
     @Test
     public void findAll() throws Exception {
-        Iterable<Route> actual = sut.findAll();
+        Iterable<Route> actual = repository.findAll();
         Assert.assertNotNull(actual.iterator().hasNext());
     }
 }
