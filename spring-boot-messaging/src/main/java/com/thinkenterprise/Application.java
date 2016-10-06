@@ -24,7 +24,7 @@ public class Application {
         context = SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(fixedDelay = 1)
+    @Scheduled(fixedDelay = 5000)
     public void sendTracking() {
         Tracking tracking = new Tracking();
         tracking.setRouteId(40L);
