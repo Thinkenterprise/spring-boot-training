@@ -2,7 +2,6 @@ package com.thinkenterprise.domain.route;
 
 
 import com.thinkenterprise.domain.core.AbstractEntity;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -19,11 +18,8 @@ import java.util.Set;
         @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights")})
 })
 public class Route extends AbstractEntity {
-    @NotEmpty
     private String flightNumber;
-    @NotEmpty
     private String departure;
-    @NotEmpty
     private String destination;
 
     private LocalTime departureTime;
@@ -41,10 +37,6 @@ public class Route extends AbstractEntity {
 
     @Transient
     private Double total;
-
-    public Route() {
-        super();
-    }
 
     public Route(String flightNumber) {
         super();
