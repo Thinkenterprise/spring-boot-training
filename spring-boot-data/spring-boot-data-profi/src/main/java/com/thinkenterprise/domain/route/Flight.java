@@ -1,13 +1,13 @@
 package com.thinkenterprise.domain.route;
 
-import com.thinkenterprise.domain.core.AbstractEntity;
+import com.thinkenterprise.domain.core.AbstractDocument;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class Flight extends AbstractEntity {
+public class Flight extends AbstractDocument {
 
     private double price;
 

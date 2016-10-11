@@ -1,7 +1,7 @@
 package com.thinkenterprise.domain.route;
 
 
-import com.thinkenterprise.domain.core.AbstractEntity;
+import com.thinkenterprise.domain.core.AbstractDocument;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Document
-public class Route extends AbstractEntity {
+public class Route extends AbstractDocument {
 
     private String flightNumber;
     private String departure;
