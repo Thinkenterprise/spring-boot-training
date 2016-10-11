@@ -82,15 +82,15 @@ public class RouteRepositoryImplTest {
     }
 
     @Test
-    public void findByFlightNumber() throws Exception {
-        Iterable<Route> actual = repository.findByFlightNumber("LH7902");
-        Assert.assertEquals("LH7902", actual.iterator().next().getFlightNumber());
+    public void findByDeparture() throws Exception {
+        Iterable<Route> actual = repository.findByDeparture("MUC");
+        Assert.assertEquals("MUC", actual.iterator().next().getDeparture());
     }
 
     @Test
-    public void findByDeparture() throws Exception {
-        Iterable<Route> actual = repository.findByDeparture("FRA");
-        Assert.assertEquals("FRA", actual.iterator().next().getDeparture());
+    public void queryFindByDeparture() throws Exception {
+        Iterable<Route> actual = repository.queryFindByDeparture("MUC");
+        Assert.assertEquals("MUC", actual.iterator().next().getDeparture());
     }
 
     @Test

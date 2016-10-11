@@ -7,13 +7,11 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface RouteRepository extends CrudRepository<Route, Long> {
-
-    Iterable<Route> findByFlightNumber(@Param("flightNumber") String flightNumber);
-
-    @Query("select r from Route r where r.departure = :departure")
     Iterable<Route> findByDeparture(@Param("departure") String departure);
 
-    @Query(value = "select * from Route r where r.destination = :destination", nativeQuery = true)
-    Iterable<Route> findByDestination(@Param("destination") String destination);
+    @Query(value = "select r from Route r where r.departure = :departure")
+    Iterable<Route> queryFindByDeparture(@Param("departure") String departure);
 
+    @Query(value = "select r from Route r where r.destination = :destination")
+    Iterable<Route> findByDestination(@Param("destination") String destination);
 }
