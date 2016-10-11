@@ -14,7 +14,7 @@ public class JmsReceiver {
     @Autowired
     private TrackingEventPublisher publisher;
 
-    @JmsListener(destination = "FlightAwareTracking", containerFactory = "jmsFactory")
+    @JmsListener(destination = "FlightAwareTracking")
     public void receiveMessage(Tracking tracking) {
         trackingRepository.save(tracking);
         publisher.publishTracking(tracking);
