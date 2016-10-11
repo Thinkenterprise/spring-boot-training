@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-@Service("routeService")
+@Service
 public class RouteService {
 
     private final AtomicInteger counter = new AtomicInteger(0);

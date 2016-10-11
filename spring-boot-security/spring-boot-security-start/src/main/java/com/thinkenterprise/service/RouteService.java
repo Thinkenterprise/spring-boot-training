@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalTime;
 
 
-@Service("routeService")
+@Service
 public class RouteService {
     @Autowired
     private RouteRepository routeRepository;
