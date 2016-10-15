@@ -82,10 +82,6 @@ public class Route extends AbstractEntity {
         return total;
     }
 
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
     public LocalTime getDepartureTime() {
         return departureTime;
     }

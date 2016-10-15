@@ -1,21 +1,17 @@
 package com.thinkenterprise.domain.route;
 
-import com.thinkenterprise.domain.core.AbstractEntity;
+import com.thinkenterprise.domain.core.AbstractDocument;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 
-@Entity
-public class Flight extends AbstractEntity {
+public class Flight extends AbstractDocument {
 
     private double price;
 
     private LocalDate date;
-    @ElementCollection
     private Set<String> employees = new HashSet<>();
 
     public Flight() {

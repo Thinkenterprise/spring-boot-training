@@ -1,9 +1,10 @@
 package com.thinkenterprise.domain.route;
 
 
-import com.thinkenterprise.domain.core.AbstractEntity;
+import com.thinkenterprise.domain.core.AbstractDocument;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -11,13 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
-@Entity
-@NamedEntityGraphs({
-        @NamedEntityGraph(name = "routeFlight", attributeNodes = {@NamedAttributeNode("flights")}),
-        @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights")})
-})
-public class Route extends AbstractEntity {
+@Document
+public class Route extends AbstractDocument {
 
     private String flightNumber;
     private String departure;
@@ -26,12 +22,8 @@ public class Route extends AbstractEntity {
     private LocalTime departureTime;
     private LocalTime arrivalTime;
 
-    @Enumerated(EnumType.ORDINAL)
-    @ElementCollection(targetClass = DayOfWeek.class)
     private Set<DayOfWeek> scheduledWeekdays = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OrderColumn(name = "date")
     private List<Flight> flights = new ArrayList<>();
 
     @Transient

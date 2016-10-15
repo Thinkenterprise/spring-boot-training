@@ -1,42 +1,27 @@
 package com.thinkenterprise.repository.driver;
 
+import com.thinkenterprise.config.RouteProperties;
 import com.thinkenterprise.domain.route.Route;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import javax.validation.constraints.Max;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestRouteRepositoryDriver implements RouteRepositoryDriver {
 
-    @Max(2L)
-    @Value("${route.count}")
-    private short routeCount;
+    @Autowired
+    private RouteProperties routeConfiguration;
 
     private List<Route> routeList = new ArrayList<>();
-    private List<String> flightNumberList = new ArrayList<>();
-    private List<String> departureList = new ArrayList<>();
-    private List<String> destinationList = new ArrayList<>();
-
-    public TestRouteRepositoryDriver() {
-        flightNumberList.add("LH7902");
-        flightNumberList.add("LH1602");
-
-        departureList.add("MUC");
-        departureList.add("FRA");
-
-        destinationList.add("MUC");
-        destinationList.add("FRA");
-    }
 
     @PostConstruct
     public void initRoutesList() {
-        for (short i = 0; i < routeCount; i++) {
-            String flightNumber = flightNumberList.get(i);
-            String departure = departureList.get(i);
-            String destination = destinationList.get(i);
+        for (short i = 0; i < routeConfiguration.getCount(); i++) {
+            String flightNumber = routeConfiguration.getFlightNumber();
+            String departure = routeConfiguration.getDeparture();
+            String destination = routeConfiguration.getDestination();
 
             Route route = new Route(flightNumber, departure, destination);
             route.addScheduledDaily();
