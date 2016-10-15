@@ -2,15 +2,17 @@ package com.thinkenterprise.service;
 
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 
 @Service
 public class RouteService {
 
-    private final AtomicInteger counter = new AtomicInteger(0);
+    private boolean serviceStatus;
 
     public boolean getServiceStatus() {
-        return counter.incrementAndGet() % 2 == 0;
+        return serviceStatus;
+    }
+
+    public void setServiceStatus(boolean status) {
+        this.serviceStatus = status;
     }
 }
