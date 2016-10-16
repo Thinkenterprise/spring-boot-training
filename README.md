@@ -89,3 +89,4 @@ git clone https://github.com/Thinkenterprise/spring-boot-training.git
 ## Useful links: 
 * [How to set up environment variables in Linux, Unix, Mac and Windows environments](http://www.tutorialspoint.com/maven/maven_environment_setup.htm)
 * [How to set up a Maven HTTP / HTTPS proxy](https://maven.apache.org/guides/mini/guide-proxies.html) 
+* [How to set up JMX Connections](https://visualvm.java.net/jmx_connections.html)
