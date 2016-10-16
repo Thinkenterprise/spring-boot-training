@@ -22,23 +22,49 @@ package com.thinkenterprise;
 
 
 import com.thinkenterprise.service.RouteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.audit.AuditEvent;
+import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
+
 @SpringBootApplication
 public class Application {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     private static ConfigurableApplicationContext context;
+    private static AuditEventRepository auditEventRepository;
 
     public static void main(String[] args) {
         context = SpringApplication.run(Application.class, args);
+        auditEventRepository = context.getBean(AuditEventRepository.class);
     }
 
     @Scheduled(fixedDelay = 10000)
     public void changeStatus() {
         RouteService service = context.getBean(RouteService.class);
-        service.setServiceStatus(!service.getServiceStatus());
+        if (service != null) {
+            service.setServiceStatus(!service.getServiceStatus());
+        }
+
+        if (auditEventRepository != null && service != null) {
+            AuditEvent event = new AuditEvent("unknown", "RouteServiceStatusChanged", String.valueOf(service.getServiceStatus()));
+            auditEventRepository.add(event);
+        }
+    }
+
+    @Scheduled(fixedDelay = 5000)
+    public void showLastEvents() {
+        if (auditEventRepository != null) {
+            List<AuditEvent> auditEvents = auditEventRepository.find(Date.from(Instant.now().minusSeconds(5)));
+            auditEvents.forEach(auditEvent -> LOGGER.info(auditEvent.toString()));
+        }
     }
 }
