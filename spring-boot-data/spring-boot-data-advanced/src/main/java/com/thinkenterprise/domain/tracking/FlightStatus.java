@@ -18,15 +18,20 @@
  * @author Michael Schaefer
  */
 
-package com.thinkenterprise.repository;
+package com.thinkenterprise.domain.tracking;
 
-import com.thinkenterprise.domain.route.Route;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+public enum FlightStatus {
+    EXPECTED,
+    DUE,
+    LANDED,
+    DELAYED,
+    CANCELLED,
+    DIVERTED,
 
-
-public interface RouteRepository extends CrudRepository<Route, Long> {
-    Iterable<Route> findByDeparture(@Param("departure") String departure);
-
-    Iterable<Route> findByDestination(@Param("destination") String destination);
+    SCHEDULED,
+    GATE_OPEN,
+    BOARDING,
+    LAST_CALL,
+    GATE_CLOSED,
+    AIRBORNE,
 }
