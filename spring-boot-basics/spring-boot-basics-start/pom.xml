@@ -31,6 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!--
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -42,7 +43,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    -->
 
     <build>
         <plugins>
@@ -55,6 +56,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId></groupId>
                 <artifactId></artifactId>
@@ -68,31 +70,33 @@
                 </executions>
             </plugin>
         </plugins>
-    </plugins>
+        -->
+        </plugins>
     </build>
-
-<repositories>
-<repository>
-    <id>spring-repo</id>
-    <name>Spring Repository</name>
-    <url></url>
-    <releases>
-        <enabled>true</enabled>
-    </releases>
-    <snapshots>
-        <enabled>false</enabled>
-    </snapshots>
-</repository>
-<repository>
-    <id>spring-snapshot</id>
-    <name>Spring Snapshot Repository</name>
-    <url></url>
-    <releases>
-        <enabled>false</enabled>
-    </releases>
-    <snapshots>
-        <enabled>true</enabled>
-    </snapshots>
-</repository>
-</repositories>
+    <!--
+    <repositories>
+    <repository>
+        <id>spring-repo</id>
+        <name>Spring Repository</name>
+        <url></url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>spring-snapshot</id>
+        <name>Spring Snapshot Repository</name>
+        <url></url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+    </repositories>
+    -->
 </project>
