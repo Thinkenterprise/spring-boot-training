@@ -20,19 +20,17 @@
 
 package com.thinkenterprise.event;
 
-import com.thinkenterprise.message.amqp.AmqpSender;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TrackingEventListener {
-
-    @Autowired
-    private AmqpSender amqpSender;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TrackingEventListener.class);
 
     @EventListener
     public void handleTrackingEvent(TrackingEvent event) {
-        amqpSender.sendMessage(event.getTracking());
+        LOGGER.info(event.getTracking().toString());
     }
 }
