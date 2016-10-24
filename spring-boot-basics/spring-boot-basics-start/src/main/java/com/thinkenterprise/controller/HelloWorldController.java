@@ -22,7 +22,8 @@ package com.thinkenterprise.controller;
 
 public class HelloWorldController {
 
-
+	/*Hello World
+	 * */
     public String index() {
         return "Hallo World";
     }
