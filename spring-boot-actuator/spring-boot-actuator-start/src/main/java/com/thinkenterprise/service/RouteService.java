@@ -21,4 +21,14 @@
 package com.thinkenterprise.service;
 
 public class RouteService {
+	
+	 private boolean serviceStatus;
+
+	    public boolean getServiceStatus() {
+	        return serviceStatus;
+	    }
+
+	    public void setServiceStatus(boolean status) {
+	        this.serviceStatus = status;
+	    }
 }
