@@ -39,6 +39,6 @@ public class TrackingRepositoryImpl implements TrackingRepository {
 
     @Override
     public Iterable<Tracking> findAll() {
-        return trackingList.subList(0, trackingList.size());
+        return trackingList;
     }
 }
