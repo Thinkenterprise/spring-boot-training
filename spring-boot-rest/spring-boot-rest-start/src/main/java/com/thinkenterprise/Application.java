@@ -32,7 +32,6 @@ public class Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         RouteService routeService = context.getBean(RouteService.class);
-        routeService.findAll();
-        ;
+        
     }
 }
