@@ -24,6 +24,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,26 +35,8 @@ import com.thinkenterprise.domain.route.Route;
 @Component
 public class BoundedContextInitializer {
 
-    @Autowired
-    //PlatformTransactionManager txManager;
-
-   /*Ü
+  
     @PostConstruct
-    public void init() {
-        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-        def.setName("InitTx");
-        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-        TransactionStatus status = txManager.getTransaction(def);
-        try {
-            initRoutes();
-        } catch (Exception ex) {
-            txManager.rollback(status);
-            throw ex;
-        }
-        txManager.commit(status);
-    }
-*/
     private void initRoutes() {
 
         // München-Houston LH7902
