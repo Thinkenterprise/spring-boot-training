@@ -20,30 +20,23 @@
 
 package com.thinkenterprise.domain;
 
-import com.thinkenterprise.domain.route.Flight;
-import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.repository.RouteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
-
-import javax.annotation.PostConstruct;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.thinkenterprise.domain.route.Flight;
+import com.thinkenterprise.domain.route.Route;
 
 @Component
 public class BoundedContextInitializer {
 
     @Autowired
-    PlatformTransactionManager txManager;
+    //PlatformTransactionManager txManager;
 
-    @Autowired
-    private RouteRepository routeRepository;
-
+   /*Ü
     @PostConstruct
     public void init() {
         DefaultTransactionDefinition def = new DefaultTransactionDefinition();
@@ -59,7 +52,7 @@ public class BoundedContextInitializer {
         }
         txManager.commit(status);
     }
-
+*/
     private void initRoutes() {
 
         // München-Houston LH7902
@@ -77,8 +70,7 @@ public class BoundedContextInitializer {
         flight = new Flight(111.45, LocalDate.of(2015, 9, 24));
         route.addFlight(flight);
 
-        routeRepository.save(route);
-
+      
         // München-Ibiza LH1602
         //
         route = new Route("LH1602", "MUC", "IBZ");
@@ -89,8 +81,7 @@ public class BoundedContextInitializer {
         flight = new Flight(120.45, LocalDate.of(2015, 9, 19));
         route.addFlight(flight);
 
-        routeRepository.save(route);
-
+      
         // München-Ibiza LH1838
         //
         route = new Route("LH1838", "MUC", "IBZ");
@@ -103,8 +94,7 @@ public class BoundedContextInitializer {
         flight = new Flight(120.45, LocalDate.of(2015, 9, 19));
         route.addFlight(flight);
 
-        routeRepository.save(route);
-
+      
         // München-New York LH401
         //
         route = new Route("LH401", "FRA", "NYC");
@@ -115,6 +105,6 @@ public class BoundedContextInitializer {
         flight = new Flight(120.45, LocalDate.of(2015, 9, 30));
         route.addFlight(flight);
 
-        routeRepository.save(route);
+      
     }
 }
