@@ -5,4 +5,4 @@
  * @author schaefem
  *
  */
-package com.thinkenterprise.test;
+package com.thinkenterprise;
