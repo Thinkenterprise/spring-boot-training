@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/routes2")
+@RequestMapping("/routes")
 public class RouteController {
 
     @Autowired
