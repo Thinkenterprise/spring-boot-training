@@ -21,12 +21,11 @@
 package com.thinkenterprise;
 
 
+import com.thinkenterprise.service.RouteService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
-
-import com.thinkenterprise.service.RouteService;
 
 @SpringBootApplication
 public class Application {
@@ -37,7 +36,7 @@ public class Application {
         context = SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(initialDelay = 1000, fixedDelay = 10000)
     public void changeStatus() {
         RouteService service = context.getBean(RouteService.class);
         service.setServiceStatus(!service.getServiceStatus());

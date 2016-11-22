@@ -47,7 +47,7 @@ public class Application {
         auditEventRepository = context.getBean(AuditEventRepository.class);
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(initialDelay = 1000, fixedDelay = 10000)
     public void changeStatus() {
         RouteService service = context.getBean(RouteService.class);
         if (service != null) {
@@ -60,7 +60,7 @@ public class Application {
         }
     }
 
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
     public void showLastEvents() {
         if (auditEventRepository != null) {
             List<AuditEvent> auditEvents = auditEventRepository.find(Date.from(Instant.now().minusSeconds(5)));

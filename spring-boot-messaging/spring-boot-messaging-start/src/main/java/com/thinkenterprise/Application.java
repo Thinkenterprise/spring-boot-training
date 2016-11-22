@@ -21,8 +21,8 @@
 package com.thinkenterprise;
 
 
-import java.time.LocalDateTime;
-
+import com.thinkenterprise.domain.tracking.FlightStatus;
+import com.thinkenterprise.domain.tracking.Tracking;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -30,8 +30,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.thinkenterprise.domain.tracking.FlightStatus;
-import com.thinkenterprise.domain.tracking.Tracking;
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 @EnableAsync
@@ -43,8 +42,8 @@ public class Application {
     public static void main(String[] args) {
         context = SpringApplication.run(Application.class, args);
     }
-    
-    @Scheduled(fixedDelay = 5000)
+
+    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
     public void sendTracking() {
         Tracking tracking = new Tracking();
         tracking.setRouteId(40L);

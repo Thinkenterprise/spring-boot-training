@@ -44,7 +44,7 @@ public class Application {
         context = SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(initialDelay=1000,fixedDelay = 5000)
+    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
     public void sendTracking() {
         Tracking tracking = new Tracking();
         tracking.setRouteId(40L);
@@ -55,8 +55,7 @@ public class Application {
         TrackingRepository repository = context.getBean(TrackingRepository.class);
         if (repository != null) {
             repository.save(tracking);
+            System.out.println(repository.count());
         }
-        
-        System.out.println(repository.count());
     }
 }

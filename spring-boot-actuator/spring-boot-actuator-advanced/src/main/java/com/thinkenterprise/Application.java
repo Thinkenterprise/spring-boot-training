@@ -36,7 +36,7 @@ public class Application {
         context = SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(initialDelay = 1000, fixedDelay = 10000)
     public void changeStatus() {
         RouteService service = context.getBean(RouteService.class);
         service.setServiceStatus(!service.getServiceStatus());
