@@ -45,7 +45,7 @@ public class RouteControllerTest {
         Map<String, String> keys = new HashMap<>();
         keys.put("id", "40");
 
-        Route body = this.restTemplate.getForObject("/routes2/{id}", Route.class, keys);
+        Route body = this.restTemplate.getForObject("routes2/{id}", Route.class, keys);
         Assert.assertNotNull(body);
     }
 }

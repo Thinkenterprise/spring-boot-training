@@ -30,18 +30,18 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/routes2")
+@RequestMapping("routes2")
 public class RouteController {
 
     @Autowired
     private RouteService service;
 
-    @RequestMapping("/count")
+    @RequestMapping("count")
     public long count() {
         return service.count();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
         try {
             service.exists(id);
@@ -52,7 +52,7 @@ public class RouteController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
         try {
             service.exists(id);
@@ -62,22 +62,22 @@ public class RouteController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity<Route> put(@Valid @RequestBody Route entity) {
         return ResponseEntity.ok(service.save(entity));
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "{id}", method = RequestMethod.POST)
     public ResponseEntity<Route> post(@Valid @RequestBody Route entity) {
         return ResponseEntity.ok(service.save(entity));
     }
 
-    @RequestMapping("/")
+    @RequestMapping
     public ResponseEntity<Iterable<Route>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @RequestMapping("/search/findByDeparture")
+    @RequestMapping("search/findByDeparture")
     public ResponseEntity<Iterable<Route>> findByDeparture(@RequestParam(value = "departure") String departure) {
         return ResponseEntity.ok(service.findByDeparture(departure));
     }
