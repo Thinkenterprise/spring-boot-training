@@ -25,10 +25,6 @@ import com.thinkenterprise.domain.route.Route;
 import com.thinkenterprise.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.annotation.PostConstruct;
 import java.time.DayOfWeek;
@@ -39,25 +35,11 @@ import java.time.LocalTime;
 public class BoundedContextInitializer {
 
     @Autowired
-    PlatformTransactionManager txManager;
-
-    @Autowired
     private RouteRepository routeRepository;
 
     @PostConstruct
     public void init() {
-        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-        def.setName("InitTx");
-        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-        TransactionStatus status = txManager.getTransaction(def);
-        try {
-            initRoutes();
-        } catch (Exception ex) {
-            txManager.rollback(status);
-            throw ex;
-        }
-        txManager.commit(status);
+        initRoutes();
     }
 
     private void initRoutes() {
