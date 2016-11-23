@@ -67,7 +67,7 @@ public class TestRouteRepositoryDriver implements RouteRepositoryDriver {
     }
 
     @Override
-    public List<Route> getRouteList() {
+    public Iterable<Route> getRouteList() {
         return routeList;
     }
 }

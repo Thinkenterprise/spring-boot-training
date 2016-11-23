@@ -20,14 +20,11 @@
 
 package com.thinkenterprise.repository.driver;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.thinkenterprise.domain.route.Route;
+import org.springframework.stereotype.Component;
 
 @Component
 public interface RouteRepositoryDriver {
-	
-	public List<Route> getRouteList();
+
+	Iterable<Route> getRouteList();
 }

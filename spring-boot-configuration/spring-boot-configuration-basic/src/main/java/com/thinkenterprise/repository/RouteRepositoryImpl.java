@@ -25,7 +25,9 @@ import com.thinkenterprise.repository.driver.RouteRepositoryDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Repository
 public class RouteRepositoryImpl implements RouteRepository {
@@ -35,12 +37,16 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public Iterable<Route> findByDeparture(String departure) {
-        return driver.getRouteList().stream().filter(
-                route -> route.getDeparture().equals(departure)).collect(Collectors.toList());
+        return StreamSupport.stream(driver.getRouteList().spliterator(), false).filter(new Predicate<Route>() {
+            @Override
+            public boolean test(Route route) {
+                return route.getDeparture().equals(departure);
+            }
+        }).collect(Collectors.toList());
     }
 
     @Override
     public Iterable<Route> findAll() {
-        return driver.getRouteList().subList(0, driver.getRouteList().size());
+        return driver.getRouteList();
     }
 }

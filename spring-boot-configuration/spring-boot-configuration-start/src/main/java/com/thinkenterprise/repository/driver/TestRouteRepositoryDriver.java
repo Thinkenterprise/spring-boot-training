@@ -21,10 +21,8 @@
 package com.thinkenterprise.repository.driver;
 
 import com.thinkenterprise.domain.route.Route;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.PostConstruct;
-import javax.validation.constraints.Max;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +63,7 @@ public class TestRouteRepositoryDriver implements RouteRepositoryDriver {
     }
 
     @Override
-    public List<Route> getRouteList() {
+    public Iterable<Route> getRouteList() {
         return routeList;
     }
 }

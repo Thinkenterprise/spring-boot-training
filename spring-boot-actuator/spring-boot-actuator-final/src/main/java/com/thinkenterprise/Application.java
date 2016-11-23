@@ -34,6 +34,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 @SpringBootApplication
 public class Application {
@@ -64,7 +65,12 @@ public class Application {
     public void showLastEvents() {
         if (auditEventRepository != null) {
             List<AuditEvent> auditEvents = auditEventRepository.find(Date.from(Instant.now().minusSeconds(5)));
-            auditEvents.forEach(auditEvent -> LOGGER.info(auditEvent.toString()));
+            auditEvents.forEach(new Consumer<AuditEvent>() {
+                @Override
+                public void accept(AuditEvent auditEvent) {
+                    LOGGER.info(auditEvent.toString());
+                }
+            });
         }
     }
 }
