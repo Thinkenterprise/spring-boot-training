@@ -29,8 +29,17 @@ public class RouteErrorStatus {
         this.functionalErrorCode = functionalErrorCode;
         this.functionalErrorMessage = functionalErrorMessage;
     }
+    
+    
 
-    public long getFunctionalErrorCode() {
+    public RouteErrorStatus() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public long getFunctionalErrorCode() {
         return functionalErrorCode;
     }
 
