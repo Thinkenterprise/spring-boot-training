@@ -31,6 +31,7 @@ import org.springframework.stereotype.Component;
 public class JmsReceiver {
     @Autowired
     private TrackingRepository trackingRepository;
+    
     @Autowired
     private TrackingEventPublisher publisher;
 
