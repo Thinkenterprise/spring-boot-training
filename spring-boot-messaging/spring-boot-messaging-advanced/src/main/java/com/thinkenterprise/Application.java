@@ -34,7 +34,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.time.LocalDateTime;
 
 @SpringBootApplication
-@EnableAsync
 @EnableScheduling
 public class Application {
 
@@ -44,12 +43,11 @@ public class Application {
         context = SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
+    @Scheduled(initialDelay = 5000, fixedDelay = 5000)
     public void sendTracking() {
         Tracking tracking = new Tracking();
         tracking.setRouteId(40L);
         tracking.setFlightNumber("LH7902");
-        tracking.setCurrentTime(LocalDateTime.now());
         tracking.setStatus(FlightStatus.DELAYED);
 
         JmsSender sender = context.getBean(JmsSender.class);

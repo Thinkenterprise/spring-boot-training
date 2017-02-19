@@ -52,38 +52,10 @@ public class AmqpConfiguration {
         return BindingBuilder.bind(queue).to(exchange).with(QUEUE_NAME);
     }
 
-    @Bean
-    public SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-                                                    MessageListenerAdapter listenerAdapter,
-                                                    MessageConverter jsonMessageConverter
-    ) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(QUEUE_NAME);
-        container.setMessageConverter(jsonMessageConverter);
-        container.setMessageListener(listenerAdapter);
-        return container;
-    }
-
+    
     @Bean
     public MessageConverter jsonMessageConverter() {
         return new JsonMessageConverter();
     }
-
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory);
-        template.setMessageConverter(jsonMessageConverter());
-        return template;
-    }
-
-    @Bean
-    public AmqpReceiver receiver() {
-        return new AmqpReceiver();
-    }
-
-    @Bean
-    public MessageListenerAdapter listenerAdapter(AmqpReceiver receiver) {
-        return new MessageListenerAdapter(receiver);
-    }
+    
 }

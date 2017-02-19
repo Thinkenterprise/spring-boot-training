@@ -20,14 +20,16 @@
 
 package com.thinkenterprise.message.amqp;
 
-import com.thinkenterprise.domain.tracking.Tracking;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.thinkenterprise.domain.tracking.Tracking;
+
 @Component
 public class AmqpSender {
 
+	
     @Autowired
     private RabbitTemplate rabbitTemplate;
 

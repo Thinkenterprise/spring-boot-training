@@ -23,13 +23,15 @@ package com.thinkenterprise.message.amqp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageListener;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
 
-public class AmqpReceiver implements MessageListener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AmqpReceiver.class);
+@Component
+public class AmqpReceiver  {
+	private static final Logger logger = LoggerFactory.getLogger(AmqpReceiver.class);
 
-    @Override
+   @RabbitListener(queues="FlightAware")
     public void onMessage(Message message) {
-        LOGGER.info(new String(message.getBody()));
+	   	logger.info(new String(message.getBody()));
     }
 }

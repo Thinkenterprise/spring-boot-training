@@ -29,14 +29,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JmsReceiver {
-    @Autowired
+   
+	@Autowired
     private TrackingRepository trackingRepository;
     @Autowired
     private TrackingEventPublisher publisher;
 
     @JmsListener(destination = "FlightAwareTracking")
     public void receiveMessage(Tracking tracking) {
-        trackingRepository.save(tracking);
+    	trackingRepository.save(tracking);
         publisher.publishTracking(tracking);
     }
 }

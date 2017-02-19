@@ -27,7 +27,6 @@ import java.time.LocalDateTime;
 public class Tracking extends AbstractEntity {
     private Long routeId;
     private String flightNumber;
-    private LocalDateTime currentTime;
     private FlightStatus status;
 
     public Long getRouteId() {
@@ -44,14 +43,6 @@ public class Tracking extends AbstractEntity {
 
     public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
-    }
-
-    public LocalDateTime getCurrentTime() {
-        return currentTime;
-    }
-
-    public void setCurrentTime(LocalDateTime currentTime) {
-        this.currentTime = currentTime;
     }
 
     public FlightStatus getStatus() {
