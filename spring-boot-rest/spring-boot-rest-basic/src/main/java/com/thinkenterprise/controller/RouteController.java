@@ -24,6 +24,7 @@ import com.thinkenterprise.domain.route.Route;
 import com.thinkenterprise.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -62,13 +63,13 @@ public class RouteController {
         }
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Route> put(@Valid @RequestBody Route entity) {
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Route> put(@Validated @RequestBody Route entity) {
         return ResponseEntity.ok(service.save(entity));
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.POST)
-    public ResponseEntity<Route> post(@Valid @RequestBody Route entity) {
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Route> post(@Validated @RequestBody Route entity) {
         return ResponseEntity.ok(service.save(entity));
     }
 
