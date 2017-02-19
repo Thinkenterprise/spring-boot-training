@@ -39,10 +39,10 @@ public class RouteServiceHealthIndicator implements HealthIndicator {
     public Health health() {
         boolean serviceStatus = service.getServiceStatus();
         if (serviceStatus) {
-            LOGGER.info("RouteService status: down");
+            LOGGER.info("RouteService status: up");
             return Health.up().build();
         } else {
-            LOGGER.warn("RouteService status: up");
+            LOGGER.warn("RouteService status: down");
             return Health.down().build();
         }
     }
