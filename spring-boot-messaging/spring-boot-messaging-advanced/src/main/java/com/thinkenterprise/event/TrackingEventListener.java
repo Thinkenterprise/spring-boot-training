@@ -14,25 +14,24 @@
  * limitations under the License.
  *
  *
- * @author Rafael Kansy
  * @author Michael Schaefer
  */
 
 package com.thinkenterprise.event;
 
-import com.thinkenterprise.message.amqp.AmqpSender;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TrackingEventListener {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TrackingEventListener.class);
 
-    @Autowired
-    private AmqpSender amqpSender;
-
+   
     @EventListener
     public void handleTrackingEvent(TrackingEvent event) {
-        amqpSender.sendMessage(event.getTracking());
+        logger.debug(event.getTracking().toString());
     }
 }

@@ -18,7 +18,7 @@
  * @author Michael Schaefer
  */
 
-package com.thinkenterprise.message.amqp;
+package com.thinkenterprise.message.amqp.response;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +27,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jms.annotation.JmsListener;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import com.thinkenterprise.domain.tracking.Tracking;
@@ -34,9 +35,9 @@ import com.thinkenterprise.event.TrackingEventPublisher;
 import com.thinkenterprise.repository.TrackingRepository;
 
 @Component
-@Profile("!requestResponse")
-public class AmqpReceiver  {
-	private static final Logger logger = LoggerFactory.getLogger(AmqpReceiver.class);
+@Profile("requestResponse")
+public class AmqpResponseReceiver  {
+	private static final Logger logger = LoggerFactory.getLogger(AmqpResponseReceiver.class);
 	
 	@Autowired
 	private TrackingRepository trackingRepository;
@@ -44,11 +45,14 @@ public class AmqpReceiver  {
 	@Autowired
 	private TrackingEventPublisher publisher;
 
-    @RabbitListener(queues=AmqpConfiguration.SIMPLE_QUEUE_NAME)
-	public void onMessage(Tracking tracking) {
+    @RabbitListener(queues=AmqpResponseConfiguration.QUEUE_NAME)
+    @SendTo(AmqpResponseConfiguration.REPLY_EXCHANGE_NAME )
+    //@SendTo(AmqpResponseConfiguration.REPLY_QUEUE_NAME )
+	public String onMessage(Tracking tracking) {
 	   	trackingRepository.save(tracking);
 	    publisher.publishTracking(tracking);
 	   	logger.info(tracking.toString());
+	   	return "Message Delivered";
 	}
    
   

@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  *
- * @author Rafael Kansy
  * @author Michael Schaefer
  */
 
@@ -32,24 +31,29 @@ import org.springframework.amqp.support.converter.JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
+@Profile("!requestResponse")
 public class AmqpConfiguration {
-    public static final String QUEUE_NAME = "FlightAware";
+   
+	public static final String SIMPLE_QUEUE_NAME 	 = "SimpleFlightAwareQueue";
+    public static final String SIMPLE_EXCHANGE_NAME = "SimpleFlightAwareExchange";
+    public static final String SIMPLE_EXCHANGE_KEY = "SimpleFlightAwareKey";
 
     @Bean
     public Queue queue() {
-        return new Queue(QUEUE_NAME, false);
+        return new Queue(AmqpConfiguration.SIMPLE_QUEUE_NAME, false, false,true);
     }
 
     @Bean
     public TopicExchange exchange() {
-        return new TopicExchange("FlightAwareTracking");
+        return new TopicExchange(AmqpConfiguration.SIMPLE_EXCHANGE_NAME);
     }
 
     @Bean
     public Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(QUEUE_NAME);
+        return BindingBuilder.bind(queue).to(exchange).with(AmqpConfiguration.SIMPLE_EXCHANGE_KEY);
     }
 
     

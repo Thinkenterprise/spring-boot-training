@@ -52,4 +52,14 @@ public class Tracking extends AbstractEntity {
     public void setStatus(FlightStatus status) {
         this.status = status;
     }
+
+	@Override
+	public String toString() {
+		return "routeId:" + routeId.toString() + " flightNumber:"+ flightNumber +" status:" + status.toString();
+	}
+    
+    
+    
+    
+    
 }

@@ -18,20 +18,26 @@
  * @author Michael Schaefer
  */
 
-package com.thinkenterprise.message.jms;
+package com.thinkenterprise.message.amqp.response;
 
-import com.thinkenterprise.domain.tracking.Tracking;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
-public class JmsSender {
+import com.thinkenterprise.domain.tracking.Tracking;
 
+@Component
+public class AmqpResponseSender {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AmqpResponseSender.class);
+	
     @Autowired
-    private JmsTemplate jmsTemplate;
+    private RabbitTemplate rabbitTemplate;
 
     public void sendMessage(Tracking tracking) {
-        jmsTemplate.convertAndSend("FlightAwareTracking", tracking);
+        String response = (String) rabbitTemplate.convertSendAndReceive(AmqpResponseConfiguration.EXCHANGE_NAME, AmqpResponseConfiguration.EXCHANGE_KEY, tracking);
+        logger.info(response);
     }
 }
