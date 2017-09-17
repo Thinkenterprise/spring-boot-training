@@ -1,0 +1,7 @@
+schema {
+    query: Message
+}
+
+type Message {
+    text: String!
+}
