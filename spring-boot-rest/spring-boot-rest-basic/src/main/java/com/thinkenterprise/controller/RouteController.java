@@ -64,7 +64,7 @@ public class RouteController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Route> put(@Validated @RequestBody Route entity) {
+    public ResponseEntity<Route> put(@Validated @RequestBody @RequestHeader Route entity) {
         return ResponseEntity.ok(service.save(entity));
     }
 

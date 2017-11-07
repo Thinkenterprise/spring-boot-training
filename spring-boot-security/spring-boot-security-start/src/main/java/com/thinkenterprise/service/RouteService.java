@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  *
- * @author Rafael Kansy
+ * 
  * @author Michael Schaefer
  */
 
@@ -46,9 +46,7 @@ public class RouteService {
         return routeRepository.findAll();
     }
 
-    public Iterable<Route> findByDeparture(String departure) {
-        return routeRepository.findByDeparture(departure);
-    }
+    
 
     public boolean exists(long id) throws RouteNotFoundException {
         boolean result = routeRepository.exists(id);

@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  *
- * @author Rafael Kansy
  * @author Michael Schaefer
  */
 
@@ -30,10 +29,4 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
-    @Override
-    protected MethodSecurityExpressionHandler createExpressionHandler() {
-        DefaultMethodSecurityExpressionHandler expressionHandler = new DefaultMethodSecurityExpressionHandler();
-        expressionHandler.setPermissionEvaluator(new CustomPermissionEvaluator());
-        return expressionHandler;
-    }
 }
