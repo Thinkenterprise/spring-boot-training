@@ -27,7 +27,7 @@ import com.thinkenterprise.message.jms.JmsSender;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
+
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -41,8 +41,7 @@ public class Application {
 
     private static ConfigurableApplicationContext context;
 
-    private SimpleJmsListenerContainerFactory s;
-   
+     
     public static void main(String[] args) {
         context = SpringApplication.run(Application.class, args);
     }
