@@ -17,7 +17,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'spring-boot-rest-basic'
+    baseName = 'spring-boot-data-start'
     version = '0.0.1-SNAPSHOT'
 }
 
@@ -31,9 +31,8 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("com.h2database:h2")
+   
+    //compile("com.h2database:h2")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     
 }
