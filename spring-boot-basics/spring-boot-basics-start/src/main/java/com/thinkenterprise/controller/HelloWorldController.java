@@ -20,11 +20,14 @@
 
 package com.thinkenterprise.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
 public class HelloWorldController {
 
-	/*Hello World
-	 * */
+	@RequestMapping
     public String index() {
-        return "Hallo World";
+        return "index";
     }
 }

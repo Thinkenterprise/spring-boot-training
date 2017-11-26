@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = 'X.X.X.RELEASE'
+        springBootVersion = '?.?.?.RELEASE'
     }
     repositories {
         //maven { url "http://repo.spring.io/release" }
@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: ''
+apply plugin: '???'
 
 jar {
     baseName = 'spring-boot-basics-start'
@@ -29,6 +29,11 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    compile("???:???")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.3.1'
