@@ -50,7 +50,7 @@ create Table create database ariline;
 set Maven Profile to production
 set Run Configuration to production 
 Curl it 
-
+-Dspring.profiles.active=prod
 
 
 
