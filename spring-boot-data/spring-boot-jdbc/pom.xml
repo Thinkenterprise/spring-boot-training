@@ -13,7 +13,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.thinkenterprise</groupId>
-	<artifactId>spring-boot-data-start</artifactId>
+	<artifactId>spring-boot-jdbc-start</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -67,7 +67,7 @@
 
 	<profiles>
 		<profile>
-			<id>mysql</id>
+			<id>production</id>
 			<dependencies>
 				<dependency>
 					<groupId>mysql</groupId>
