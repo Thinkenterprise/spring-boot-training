@@ -1,0 +1,56 @@
+
+1. POM File 
+##################################
+Add JDBC, H2 and MSQL Dependency 
+spring-boot-starter-jpa 
+com.h2database h2
+mysql mysql-connector-java
+
+2. Configurion 
+##################################
+Show Spring Boot JDBC Configuration 
+
+
+3. Initializing Scripts
+##################################
+Show Spring Boot Database Initializing Scripts 
+
+
+4. Create JPA Entity
+##################################
+@Entity, @Id , @GenereatedValue 
+
+4. Create Repository  
+##################################
+Create Class JPA Repository 
+Create findAll()
+Create find(Integer id)
+Create save(Route route)
+
+
+5. Write Test
+##################################
+Create Test Class 
+Inject JPA Repository
+Implement Test findAll 
+Start Test 
+
+6. Start Test 
+##################################
+Run Application 
+http://localhost:8080/h2-console
+
+
+6. Start in Production Mode 
+##################################
+Show SQL and Configuration differences 
+Start Mysql Start MySQL Server $HOME/bin/mysqld.exe --console
+create Table create database ariline;
+set Maven Profile to production
+set Run Configuration to production 
+Curl it 
+-Dspring.profiles.active=prod
+
+
+
+
