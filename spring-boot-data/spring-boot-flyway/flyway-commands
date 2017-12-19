@@ -1,0 +1,11 @@
+Start MySQL Server $HOME/bin/mysqld.exe --console
+Start MySQL Monitor $HOME/bin/mysql -u root
+MySQL Monitor Commands 
+create database demodatabase
+use demodatabase
+show tables
+drop database demodatabase
+desc schema_version 
+select * from schema_version 
+
+

@@ -1,0 +1,7 @@
+mvn flyway:info
+mvn flyway:migrate
+mvn flyway:validate
+
+
+https://flywaydb.org/documentation/maven/
+
