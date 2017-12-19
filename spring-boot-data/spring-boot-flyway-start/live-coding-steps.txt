@@ -1,0 +1,70 @@
+
+1. POM File 
+##################################
+Add Flyway Dependency org.flywaydb flyway-core
+
+
+2. Configurion 
+##################################
+Show Spring Boot H2 Configuration
+Show Spring Boot MySQL Production Configuration
+
+
+3. Create Flyware Migration Scripts Version I & II  
+##################################
+Add Directory DB/Migration
+Copy H2 Step 1 Files in Directory  
+Copy H2 Step 2 Files in Directory  
+
+
+4. Execute JPA Test with Flyway  
+##################################
+Using Flyway with Test Loading of Test Data, Test Scripts 
+
+
+5. Create Flyware Migration Scripts for Production Version I   
+##################################
+Add Directory DB/Production/Migration
+Copy MySQL Step 1 Files in Directory  
+
+flyway.locations=classpath:db/production/migration
+flyway.enabled=true
+flyway.checkLocation=false
+
+
+
+6. Setup Database Server 
+##################################
+Start MySQL Server $HOME/bin/mysqld.exe --console
+Start MySQL Client $HOME/bin/mysql -u root
+
+drop database migration;
+create database migration;
+
+7. Start Spring Boot Application 
+##################################
+Run Configuration 
+Set Profile to production -Dspring.profiles.active=production 
+
+show tables; 
+
+See Route and schema_version table;
+desc schema_version;
+select * from schema_version;
+
+
+8. Create Flyware Migration Scripts for Production Version II   
+##################################
+Copy MySQL Step 2 Files in Directory  
+
+
+9. Start Spring Boot Application 
+##################################
+Run Configuration 
+Set Profile to production -Dspring.profiles.active=production 
+
+show tables; 
+
+See Route and schema_version table;
+desc schema_version;
+select * from schema_version;
