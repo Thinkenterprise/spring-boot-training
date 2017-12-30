@@ -28,6 +28,6 @@ public class HelloWorldController {
 
     @RequestMapping
     public String index() {
-        return "Hallo World";
+        return "Hello World";
     }
 }
