@@ -20,6 +20,8 @@
 
 package com.thinkenterprise.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -37,7 +39,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.thinkenterprise.domain.route.Flight;
 import com.thinkenterprise.domain.route.Route;
+import com.thinkenterprise.repository.RouteRepository;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -46,9 +50,34 @@ public class RouteControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-
+       
     @Test
-    public void get() throws Exception {
+    public void post() {
+    	  	
+    	  Route route = new Route("TEST100", "TEST1", "TEST2");
+          route.addScheduledDaily();
+          route.setDepartureTime(LocalTime.of(9, 30));
+          route.setArrivalTime(LocalTime.of(14, 00));
+
+          Flight flight = new Flight(120.45, LocalDate.of(2015, 9, 23));
+          flight.addEmployee("Fred");
+          flight.addEmployee("Sarah");
+          route.addFlight(flight);
+
+          flight = new Flight(111.45, LocalDate.of(2015, 9, 24));
+          route.addFlight(flight);
+ 
+          ResponseEntity<Route> result = restTemplate.postForEntity("/routes", route, Route.class);
+    	
+          Assert.assertEquals (HttpStatus.CREATED, result.getStatusCode());
+          Assert.assertNotNull (result.getBody());
+          Assert.assertEquals ("TEST100", result.getBody().getFlightNumber());
+             	   		
+    }
+         
+    
+    @Test
+    public void get()  {
     	
         Map<String, String> keys = new HashMap<>();
         keys.put("id", "10");
@@ -70,20 +99,10 @@ public class RouteControllerTest {
         Assert.assertEquals (10L, routeEntity2.getBody().getId().longValue());
     }
 
-    @Test
-    public void getNotFound() throws Exception {
-    	
-        Map<String, String> keys = new HashMap<>();
-        keys.put("id", "40");
-
-        ResponseEntity<RouteErrorStatus> error = this.restTemplate.getForEntity("/routes/{id}", RouteErrorStatus.class, keys);
-        
-        Assert.assertEquals(HttpStatus.NOT_FOUND, error.getStatusCode());
-        Assert.assertEquals(6573, error.getBody().getFunctionalErrorCode());
-    }
+   
 
     @Test
-    public void getAllOption1() throws Exception {
+    public void getAllWithIteratbel()  {
 
         // 1. Option with Iterator and restTemplate.getForObject
         Iterable<Route> iterable = this.restTemplate.getForObject("/routes", Iterable.class);
@@ -92,11 +111,11 @@ public class RouteControllerTest {
         for (Iterator<Route> iterator=iterable.iterator(); iterator.hasNext() ; ++size, iterator.next() ) ;
         
         Assert.assertNotNull(iterable.iterator().hasNext());
-        Assert.assertEquals(4, size);
+      
     }
 
     @Test
-    public void getAllOption2() throws Exception {
+    public void getAllWithParameterized()  {
 
         // 2. Option with Iterator and restTemplate.exchange
         ResponseEntity<Iterable<Route>> routeResponse =
@@ -110,11 +129,11 @@ public class RouteControllerTest {
         Assert.assertEquals (HttpStatus.OK, routeResponse.getStatusCode());
         Assert.assertNotNull (routeResponse.getBody());
         Assert.assertNotNull(iterable.iterator().hasNext());
-        Assert.assertEquals(4, size);
+        
     }
     
     @Test
-    public void getAllOption3() throws Exception {
+    public void getAllWithParameterizedWithList() {
 
         // 3. Option with List and restTemplate.exchange
         ResponseEntity<List<Route>> routeResponse =
@@ -125,6 +144,18 @@ public class RouteControllerTest {
 
         Assert.assertEquals (HttpStatus.OK, routeResponse.getStatusCode());
         Assert.assertNotNull (routeResponse.getBody());
-        Assert.assertEquals(4, routes.size());
+        
+    }
+    
+    @Test
+    public void getNotFound() throws Exception {
+    	
+        Map<String, String> keys = new HashMap<>();
+        keys.put("id", "40");
+
+        ResponseEntity<RouteErrorStatus> error = this.restTemplate.getForEntity("/routes/{id}", RouteErrorStatus.class, keys);
+        
+        Assert.assertEquals(HttpStatus.NOT_FOUND, error.getStatusCode());
+        Assert.assertEquals(6573, error.getBody().getFunctionalErrorCode());
     }
 }

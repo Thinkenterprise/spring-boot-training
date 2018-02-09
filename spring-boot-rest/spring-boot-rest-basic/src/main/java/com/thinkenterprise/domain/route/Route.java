@@ -22,9 +22,11 @@ package com.thinkenterprise.domain.route;
 
 
 import com.thinkenterprise.domain.core.AbstractEntity;
-import org.hibernate.validator.constraints.NotEmpty;
+
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -39,11 +41,14 @@ import java.util.Set;
         @NamedEntityGraph(name = "routeFlightAircraft", attributeNodes = {@NamedAttributeNode(value = "flights")})
 })
 public class Route extends AbstractEntity {
-    @NotEmpty
+    
+	
+	
+	@NotNull
     private String flightNumber;
-    @NotEmpty
+	@NotNull
     private String departure;
-    @NotEmpty
+	@NotNull
     private String destination;
 
     private LocalTime departureTime;
