@@ -21,6 +21,7 @@
 package com.thinkenterprise.repository;
 
 import com.thinkenterprise.domain.route.Route;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
