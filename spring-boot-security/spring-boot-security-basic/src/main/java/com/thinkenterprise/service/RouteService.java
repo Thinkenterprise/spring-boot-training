@@ -47,7 +47,8 @@ public class RouteService {
     }
 
     public boolean exists(long id) throws RouteNotFoundException {
-        boolean result = routeRepository.exists(id);
+       boolean result = routeRepository.exists(id);
+       
         if (!result) {
             throw new RouteNotFoundException("Route not found: " + id);
         } else {
@@ -64,10 +65,13 @@ public class RouteService {
     }
 
     public Route save(Route entity) {
+
         return routeRepository.save(entity);
+      
     }
 
     public Route findById(long id) {
         return routeRepository.findOne(id);
+
     }
 }

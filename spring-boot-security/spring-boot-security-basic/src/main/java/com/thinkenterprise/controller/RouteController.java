@@ -45,7 +45,7 @@ public class RouteController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
+    public ResponseEntity<Void> delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
         try {
             service.exists(id);
             service.delete(id);
