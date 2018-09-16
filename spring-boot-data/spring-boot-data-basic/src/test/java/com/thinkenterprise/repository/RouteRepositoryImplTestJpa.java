@@ -20,22 +20,22 @@
 
 package com.thinkenterprise.repository;
 
+import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.thinkenterprise.domain.route.Route;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
@@ -91,7 +91,7 @@ public class RouteRepositoryImplTestJpa {
     public void findOne() throws Exception {
         Route expected = new Route("LH7902", "MUC", "IAH");
 
-        Route actual = repository.findOne(ID);
+        Route actual =  repository.findOne(ID);
 
         Assert.assertEquals(expected.getFlightNumber(), actual.getFlightNumber());
         Assert.assertEquals(expected.getDeparture(), actual.getDeparture());
@@ -127,10 +127,12 @@ public class RouteRepositoryImplTestJpa {
         Route expected = new Route("LH7902", "MUC", "BAR");
 
         Route entity = repository.findOne(ID);
+        
         entity.setDestination("BAR");
         repository.save(entity);
 
         Route actual = repository.findOne(ID);
+      
         Assert.assertEquals(expected.getFlightNumber(), actual.getFlightNumber());
         Assert.assertEquals(expected.getDeparture(), actual.getDeparture());
         Assert.assertEquals(expected.getDestination(), actual.getDestination());
