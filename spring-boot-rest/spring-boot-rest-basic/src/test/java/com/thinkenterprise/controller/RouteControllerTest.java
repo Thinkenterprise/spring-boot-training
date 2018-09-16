@@ -27,6 +27,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.thinkenterprise.domain.route.Flight;
+import com.thinkenterprise.domain.route.Route;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,10 +41,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.thinkenterprise.domain.route.Flight;
-import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.repository.RouteRepository;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
