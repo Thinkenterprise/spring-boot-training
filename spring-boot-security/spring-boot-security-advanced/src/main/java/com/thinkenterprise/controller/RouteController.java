@@ -31,63 +31,17 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("routes2")
+@RequestMapping("routes")
 public class RouteController {
 
     @Autowired
     private RouteService service;
 
-    @RequestMapping("count")
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
-    public long count() {
-        return service.count();
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
-    public ResponseEntity delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
-            service.exists(id);
-            service.delete(id);
-            return ResponseEntity.accepted().build();
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
-    public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
-            service.exists(id);
-            return ResponseEntity.ok(service.findById(id));
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
-    public ResponseEntity<Route> put(@Valid @RequestBody Route entity) {
-        return ResponseEntity.ok(service.save(entity));
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.POST)
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
-    public ResponseEntity<Route> post(@Valid @RequestBody Route entity) {
-        return ResponseEntity.ok(service.save(entity));
-    }
-
     @RequestMapping
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
+    @PreAuthorize("#oauth2.hasScope('read')")
     public ResponseEntity<Iterable<Route>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @RequestMapping("search/findByDeparture")
-    @PreAuthorize("isAuthenticated() and hasPermission('com.thinkenterprise.domain.route.Route', 'read')")
-    public ResponseEntity<Iterable<Route>> findByDeparture(@RequestParam(value = "departure") String departure) {
-        return ResponseEntity.ok(service.findByDeparture(departure));
-    }
 }
 

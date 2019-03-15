@@ -18,7 +18,7 @@
  * @author Michael Schaefer
  */
 
-package com.thinkenterprise.controller;
+package com.thinkenterprise.test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.thinkenterprise.controller.RouteErrorStatus;
 import com.thinkenterprise.domain.route.Flight;
 import com.thinkenterprise.domain.route.Route;
 
