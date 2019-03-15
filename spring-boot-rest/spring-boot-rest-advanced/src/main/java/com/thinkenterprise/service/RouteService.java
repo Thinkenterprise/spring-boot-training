@@ -20,13 +20,16 @@
 
 package com.thinkenterprise.service;
 
-import com.thinkenterprise.controller.RouteNotFoundException;
-import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.repository.RouteRepository;
+import java.time.LocalTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
+import com.thinkenterprise.controller.RouteNotFoundException;
+import com.thinkenterprise.domain.route.Route;
+import com.thinkenterprise.repository.RouteRepository;
+
+import net.bytebuddy.implementation.bytecode.Throw;
 
 
 @Service
@@ -50,12 +53,12 @@ public class RouteService {
         return routeRepository.findByDeparture(departure);
     }
 
-    public boolean exists(long id) throws RouteNotFoundException {
-        boolean result = routeRepository.exists(id);
+    public boolean exists(long id)  {
+        boolean result = routeRepository.existsById(id);
         if (!result) {
-            throw new RouteNotFoundException("Route not found: " + id);
+        	return result;
         } else {
-            return result;
+            throw new RouteNotFoundException();
         }
     }
 
@@ -64,7 +67,7 @@ public class RouteService {
     }
 
     public void delete(long id) {
-        routeRepository.delete(id);
+        routeRepository.deleteById(id);
     }
 
     public Route save(Route entity) {
@@ -72,6 +75,6 @@ public class RouteService {
     }
 
     public Route findById(long id) {
-        return routeRepository.findOne(id);
+        return routeRepository.findById(id).get();
     }
 }

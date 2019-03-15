@@ -20,7 +20,7 @@
 
 package com.thinkenterprise.controller;
 
-public class RouteNotFoundException extends Exception {
+public class RouteNotFoundException extends RuntimeException {
 
     public RouteNotFoundException() {
         super();

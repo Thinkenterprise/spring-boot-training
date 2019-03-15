@@ -42,24 +42,17 @@ public class RouteController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
+    public ResponseEntity delete(@PathVariable(value = "id") Long id)  {  
             service.exists(id);
             service.delete(id);
-            return ResponseEntity.accepted().build();
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
+            return ResponseEntity.accepted().build();           
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
+    public ResponseEntity<Route> get(@PathVariable(value = "id") Long id)  {
             service.exists(id);
             return ResponseEntity.ok(service.findById(id));
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
+     
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)

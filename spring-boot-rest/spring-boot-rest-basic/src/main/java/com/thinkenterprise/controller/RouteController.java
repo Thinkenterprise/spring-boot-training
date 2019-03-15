@@ -61,14 +61,14 @@ public class RouteController {
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) {
-		if(routeRepository.exists(id)) return new ResponseEntity<Route>(routeRepository.findOne(id),HttpStatus.OK);
+		if(service.exists(id)) return new ResponseEntity<Route>(routeRepository.findById(id).get(),HttpStatus.OK);
 		else return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);	 
 	 }
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "id") Long id) {
-   		routeRepository.delete(id);
+   		routeRepository.deleteById(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)

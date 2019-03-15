@@ -51,7 +51,7 @@ public class RouteService {
     }
 
     public boolean exists(long id)  {
-        boolean result = routeRepository.exists(id);
+        boolean result = routeRepository.existsById(id);
         if (!result) {
         	return result;
         } else {
@@ -64,7 +64,7 @@ public class RouteService {
     }
 
     public void delete(long id) {
-        routeRepository.delete(id);
+        routeRepository.deleteById(id);
     }
 
     public Route save(Route entity) {
@@ -72,6 +72,6 @@ public class RouteService {
     }
 
     public Route findById(long id) {
-        return routeRepository.findOne(id);
+        return routeRepository.findById(id).get();
     }
 }

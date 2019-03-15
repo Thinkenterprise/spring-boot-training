@@ -35,7 +35,7 @@ import java.util.List;
 
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.NONE)
 @RunWith(SpringRunner.class)
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
 public class RouteRepositoryImplTest {
@@ -70,15 +70,15 @@ public class RouteRepositoryImplTest {
         entities.add(new Route("LH400", "MUC", "NYC"));
         entities.add(new Route("LH450", "NYC", "MUC"));
 
-        repository.save(entities);
-
+        repository.saveAll(entities);
+        
         long actual = repository.count();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void exists() throws Exception {
-        boolean actual = repository.exists(ID);
+        boolean actual = repository.existsById(ID);
 
         Assert.assertEquals(true, actual);
     }
@@ -88,7 +88,7 @@ public class RouteRepositoryImplTest {
     public void findOne() throws Exception {
         Route expected = new Route("LH7902", "MUC", "IAH");
 
-        Route actual = repository.findOne(ID);
+        Route actual = repository.findById(ID).get();
 
         Assert.assertEquals(expected.getFlightNumber(), actual.getFlightNumber());
         Assert.assertEquals(expected.getDeparture(), actual.getDeparture());
@@ -123,11 +123,11 @@ public class RouteRepositoryImplTest {
     public void update() throws Exception {
         Route expected = new Route("LH7902", "MUC", "BAR");
 
-        Route entity = repository.findOne(ID);
+        Route entity = repository.findById(ID).get();
         entity.setDestination("BAR");
         repository.save(entity);
 
-        Route actual = repository.findOne(ID);
+        Route actual = repository.findById(ID).get();
         Assert.assertEquals(expected.getFlightNumber(), actual.getFlightNumber());
         Assert.assertEquals(expected.getDeparture(), actual.getDeparture());
         Assert.assertEquals(expected.getDestination(), actual.getDestination());
@@ -137,7 +137,7 @@ public class RouteRepositoryImplTest {
     public void delete() throws Exception {
         long expected = repository.count() - 1;
 
-        repository.delete(ID);
+        repository.deleteById(ID);
 
         long actual = repository.count();
         Assert.assertEquals(expected, actual);
