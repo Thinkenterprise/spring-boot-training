@@ -20,20 +20,26 @@
 
 package com.thinkenterprise.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.stereotype.Service;
+
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 
 
 @Service
 public class RouteService {
-    @Autowired
-    private CounterService counterService;
-
+  
     private boolean serviceStatus;
+    private final Counter counter;
+    
+   
+	public RouteService(MeterRegistry registry) {
+		this.counter = registry.counter("change.status");
+	}
 
-    public boolean getServiceStatus() {
-        this.counterService.increment("services.system.routeservice.invoked");
+
+	public boolean getServiceStatus() {
+		this.counter.increment();
         return serviceStatus;
     }
 
