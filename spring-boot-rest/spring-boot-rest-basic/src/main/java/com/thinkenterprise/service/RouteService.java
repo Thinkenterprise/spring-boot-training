@@ -34,17 +34,11 @@ import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
 public class RouteService {
-    @Autowired
+   
+	@Autowired
     private RouteRepository routeRepository;
 
-    public int calculateFlightCount(Route route) {
-        return route.getFlights().size();
-    }
-
-    public String formatTime(LocalTime time) {
-        return time.toString();
-    }
-
+   
     public Iterable<Route> findAll() {
         return routeRepository.findAll();
     }
@@ -53,20 +47,8 @@ public class RouteService {
         return routeRepository.findByDeparture(departure);
     }
 
-    public boolean exists(long id)  {
-        boolean result = routeRepository.existsById(id);
-        if (!result) {
-        	return result;
-        } else {
-            throw new RouteNotFoundException();
-        }
-    }
-
-    public long count() {
-        return routeRepository.count();
-    }
-
-    public void delete(long id) {
+   
+    public void deleteById(long id) {
         routeRepository.deleteById(id);
     }
 

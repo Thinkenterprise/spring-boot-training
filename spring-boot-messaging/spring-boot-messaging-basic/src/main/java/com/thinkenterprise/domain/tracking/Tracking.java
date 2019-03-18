@@ -20,16 +20,22 @@
 
 package com.thinkenterprise.domain.tracking;
 
-import com.thinkenterprise.domain.core.AbstractEntity;
-
 import java.time.LocalDateTime;
 
-public class Tracking extends AbstractEntity {
-    private Long routeId;
+public class Tracking  {
+    
+	private Long id;
+	private Long routeId;
     private String flightNumber;
     private LocalDateTime currentTime;
     private FlightStatus status;
 
+    
+   
+
+   
+    
+    
     public Long getRouteId() {
         return routeId;
     }
@@ -60,5 +66,13 @@ public class Tracking extends AbstractEntity {
 
     public void setStatus(FlightStatus status) {
         this.status = status;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

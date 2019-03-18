@@ -20,9 +20,11 @@
 
 package com.thinkenterprise.repository.driver;
 
+import java.util.List;
+
 import com.thinkenterprise.domain.route.Route;
 
 public interface RouteRepositoryDriver {
 
-    Iterable<Route> getRouteList();
+    List<Route> getRouteList();
 }

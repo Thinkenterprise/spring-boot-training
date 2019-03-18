@@ -20,18 +20,13 @@
 
 package com.thinkenterprise.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.service.RouteService;
+import com.thinkenterprise.repository.RouteRepository;
 
 
 @RestController
@@ -39,48 +34,11 @@ import com.thinkenterprise.service.RouteService;
 public class RouteController {
 
     @Autowired
-    private RouteService service;
-
-    @RequestMapping("count")
-    public long count() {
-        return service.count();
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
-            service.exists(id);
-            service.delete(id);
-            return ResponseEntity.accepted().build();
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
-            service.exists(id);
-            return ResponseEntity.ok(service.findById(id));
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT) 
-    public ResponseEntity<Route> put(@Valid @RequestBody Route entity) {
-        return ResponseEntity.ok(service.save(entity));
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.POST)
-    
-    public ResponseEntity<Route> post(@Valid @RequestBody Route entity) {
-        return ResponseEntity.ok(service.save(entity));
-    }
+    private RouteRepository routeRepository;
 
     @RequestMapping
     public ResponseEntity<Iterable<Route>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(routeRepository.findAll());
     }
 
    

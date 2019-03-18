@@ -20,11 +20,35 @@
 
 package com.thinkenterprise.repository;
 
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.thinkenterprise.domain.route.Route;
+import com.thinkenterprise.repository.driver.RouteRepositoryDriver;
 
-public interface RouteRepository {
+@Repository
+public class RouteRepository {
 
-    Iterable<Route> findByDeparture(String departure);
+    @Autowired
+    private RouteRepositoryDriver driver;
 
-    Iterable<Route> findAll();
+   
+    public List<Route> findByDeparture(String departure) {
+        return StreamSupport.stream(driver.getRouteList().spliterator(), false).filter(new Predicate<Route>() {
+            @Override
+            public boolean test(Route route) {
+                return route.getDeparture().equals(departure);
+            }
+        }).collect(Collectors.toList());
+    }
+
+   
+    public List<Route> findAll() {
+        return driver.getRouteList();
+    }
 }

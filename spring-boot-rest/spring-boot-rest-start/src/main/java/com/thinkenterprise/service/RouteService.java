@@ -20,8 +20,6 @@
 
 package com.thinkenterprise.service;
 
-import java.time.LocalTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +29,11 @@ import com.thinkenterprise.repository.RouteRepository;
 
 @Service
 public class RouteService {
-    @Autowired
+   
+	@Autowired
     private RouteRepository routeRepository;
 
-    public int calculateFlightCount(Route route) {
-        return route.getFlights().size();
-    }
-
-    public String formatTime(LocalTime time) {
-        return time.toString();
-    }
-
+   
     public Iterable<Route> findAll() {
         return routeRepository.findAll();
     }
@@ -50,20 +42,8 @@ public class RouteService {
         return routeRepository.findByDeparture(departure);
     }
 
-    public boolean exists(long id)  {
-        boolean result = routeRepository.existsById(id);
-        if (!result) {
-        	return result;
-        } else {
-            return result;
-        }
-    }
-
-    public long count() {
-        return routeRepository.count();
-    }
-
-    public void delete(long id) {
+   
+    public void deleteById(long id) {
         routeRepository.deleteById(id);
     }
 

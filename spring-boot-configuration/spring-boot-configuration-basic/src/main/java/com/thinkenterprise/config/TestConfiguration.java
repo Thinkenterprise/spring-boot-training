@@ -20,7 +20,7 @@
 
 package com.thinkenterprise.config;
 
-import com.thinkenterprise.repository.RouteRepositoryImpl;
+import com.thinkenterprise.repository.RouteRepository;
 import com.thinkenterprise.repository.driver.RouteRepositoryDriver;
 import com.thinkenterprise.repository.driver.TestRouteRepositoryDriver;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -31,7 +31,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @Configuration
 @Profile("test")
-@ConditionalOnClass(RouteRepositoryImpl.class)
+@ConditionalOnClass(RouteRepository.class)
 public class TestConfiguration {
 
     @Bean

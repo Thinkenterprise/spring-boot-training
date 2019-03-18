@@ -30,11 +30,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.repository.RouteRepository;
 import com.thinkenterprise.service.RouteService;
 
 
@@ -45,46 +43,38 @@ public class RouteController {
     @Autowired
     private RouteService service;
 
-    @RequestMapping("count")
-    public long count() {
-        return service.count();
-    }
-
-    @Autowired
-	RouteRepository routeRepository;
-	
+  
 	@RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<Route>> getAll() {
-		if(routeRepository.count()>0) return new ResponseEntity<Iterable<Route>>(routeRepository.findAll(),HttpStatus.OK);
-		else return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+		Iterable<Route> result = service.findAll();
+		return new ResponseEntity<Iterable<Route>>(service.findAll(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) {
-		if(service.exists(id)) return new ResponseEntity<Route>(routeRepository.findById(id).get(),HttpStatus.OK);
-		else return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);	 
+		if(id==110000L) throw new RouteNotFoundException();
+		return new ResponseEntity<Route>(service.findById(id),HttpStatus.OK); 
 	 }
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable(value = "id") Long id) {
-   		routeRepository.deleteById(id);
+    public ResponseEntity<Void> delete(@PathVariable(value = "id") Long id) {
+		service.deleteById(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);   	
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void put(@Validated @RequestBody Route entity) {	
-	    routeRepository.save(entity);
+	public ResponseEntity<Void> put(@Validated @RequestBody Route entity) {		
+		service.save(entity);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);    
 	}	
 	
 	@RequestMapping(method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Route> post(@Validated @RequestBody Route entity) {	
-	    return new ResponseEntity<Route>(routeRepository. save(entity),HttpStatus.CREATED);
+	    return new ResponseEntity<Route>(service.save(entity),HttpStatus.CREATED);
 	}	
 	
 	 @RequestMapping(value="search",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	 public ResponseEntity<Iterable<Route>> findByDeparture(@RequestParam(value = "departure") String departure) {
-		 if(routeRepository.findByDeparture(departure).iterator().hasNext()) return new ResponseEntity<Iterable<Route>>(routeRepository.findAll(),HttpStatus.OK);
-		 else return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+		 return new ResponseEntity<Iterable<Route>>(service.findAll(),HttpStatus.OK);
 	 }
 }

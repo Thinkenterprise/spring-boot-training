@@ -14,20 +14,19 @@
  * limitations under the License.
  *
  *
- * 
+ * @author Rafael Kansy
  * @author Michael Schaefer
  */
 
 package com.thinkenterprise.controller;
 
-import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import com.thinkenterprise.domain.route.Route;
+import com.thinkenterprise.repository.RouteRepository;
 
 
 @RestController
@@ -35,55 +34,13 @@ import javax.validation.Valid;
 public class RouteController {
 
     @Autowired
-    private RouteService service;
-
-    @RequestMapping("count")
-    @PreAuthorize("hasRole('ADMIN')")
-    public long count() {
-        return service.count();
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> delete(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
-            service.exists(id);
-            service.delete(id);
-            return ResponseEntity.accepted().build();
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Route> get(@PathVariable(value = "id") Long id) throws RouteNotFoundException {
-        try {
-            service.exists(id);
-            return ResponseEntity.ok(service.findById(id));
-        } catch (RouteNotFoundException e) {
-            throw e;
-        }
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Route> put(@Valid @RequestBody Route entity) {
-        return ResponseEntity.ok(service.save(entity));
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.POST)
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Route> post(@Valid @RequestBody Route entity) {
-        return ResponseEntity.ok(service.save(entity));
-    }
+    private RouteRepository routeRepository;
 
     @RequestMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Iterable<Route>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(routeRepository.findAll());
     }
 
-  
+   
 }
 

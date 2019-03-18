@@ -27,14 +27,12 @@ public class RouteControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
-    public void routeQueryroutes() throws IOException { 
+    public void getAll() throws IOException { 
     	
     	        ResponseEntity<List<Route>> routeResponse =
     	        		testRestTemplate.exchange("/routes",
     	                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Route>>(){});
     	        
-    	        List<Route> routes = routeResponse.getBody();        
-
     	        Assert.assertEquals (HttpStatus.OK, routeResponse.getStatusCode());
     	        Assert.assertNotNull (routeResponse.getBody());
     	       

@@ -25,7 +25,12 @@ import com.thinkenterprise.domain.core.AbstractEntity;
 import java.time.LocalDateTime;
 
 public class Tracking extends AbstractEntity {
-    private Long routeId;
+    
+	private Long id;
+	
+	
+
+	private Long routeId;
     private String flightNumber;
     private FlightStatus status;
 
@@ -53,13 +58,17 @@ public class Tracking extends AbstractEntity {
         this.status = status;
     }
 
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+    
 	@Override
 	public String toString() {
 		return "routeId:" + routeId.toString() + " flightNumber:"+ flightNumber +" status:" + status.toString();
 	}
-    
-    
-    
-    
-    
 }

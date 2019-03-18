@@ -33,14 +33,6 @@ public class RouteService {
     @Autowired
     private RouteRepository routeRepository;
 
-    public int calculateFlightCount(Route route) {
-        return route.getFlights().size();
-    }
-
-    public String formatTime(LocalTime time) {
-        return time.toString();
-    }
-
     public Iterable<Route> findAll() {
         return routeRepository.findAll();
     }

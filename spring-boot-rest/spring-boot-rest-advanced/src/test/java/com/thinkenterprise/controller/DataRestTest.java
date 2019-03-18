@@ -35,7 +35,7 @@ import java.util.Map;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-public class RouteControllerTest {
+public class DataRestTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -43,9 +43,9 @@ public class RouteControllerTest {
     @Test
     public void get() throws Exception {
         Map<String, String> keys = new HashMap<>();
-        keys.put("id", "40");
+        keys.put("id", "101");
 
-        Route body = this.restTemplate.getForObject("routes2/{id}", Route.class, keys);
+        Route body = this.restTemplate.getForObject("/routes/{id}", Route.class, keys);
         Assert.assertNotNull(body);
     }
 }

@@ -27,7 +27,8 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface RouteRepository extends CrudRepository<Route, Long> {
-    Iterable<Route> findByDeparture(@Param("departure") String departure);
+    
+	Iterable<Route> findByDeparture(String departure);
 
     @Query(value = "select r from Route r where r.departure = :departure")
     Iterable<Route> queryFindByDeparture(@Param("departure") String departure);

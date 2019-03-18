@@ -1,0 +1,24 @@
+spring: 
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:    console:      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE 
+    platform: h2
+    
+    
+security:
+   oauth2:
+      resource:
+         jwt:
+            key-value: |
+               -----BEGIN PUBLIC KEY----- 
+                MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
+                UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
+                HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D 
+                o2kQ+X5xK9cipRgEKwIDAQAB
+               -----END PUBLIC KEY-----
