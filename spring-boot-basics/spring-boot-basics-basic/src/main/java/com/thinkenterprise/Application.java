@@ -20,13 +20,34 @@
 package com.thinkenterprise;
 
 
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration;
 
-@SpringBootApplication
-public class Application {
+import com.thinkenterprise.customize.HelloWorldSpringApplicationContextInitializer;
+import com.thinkenterprise.customize.HelloWorldSpringApplicationEventListener;
 
+@SpringBootApplication(exclude = {H2ConsoleAutoConfiguration.class}, scanBasePackageClasses = {Application.class})
+public class Application implements ApplicationRunner  {
+	
+	
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    	
+    	SpringApplication springApplication = new SpringApplication(Application.class);
+    	
+    	springApplication.addListeners(new HelloWorldSpringApplicationEventListener());
+    	springApplication.addInitializers(new HelloWorldSpringApplicationContextInitializer());
+    	springApplication.run(args);    	
+
     }
+
+
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		System.out.println("Here you can initialize your application ...");
+		System.out.println(args.getSourceArgs());
+		
+	}
 }
