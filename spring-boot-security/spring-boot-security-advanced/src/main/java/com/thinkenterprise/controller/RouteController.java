@@ -38,7 +38,7 @@ public class RouteController {
     private RouteRepository routeRepository;
 
     @RequestMapping
-    @PreAuthorize("#oauth2.hasScope('read')")
+    @PreAuthorize("hasAuthority('SCOPE_read')")
     public ResponseEntity<Iterable<Route>> findAll() {
         return ResponseEntity.ok(routeRepository.findAll());
     }
